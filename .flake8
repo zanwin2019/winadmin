@@ -1,0 +1,19 @@
+[flake8]
+ignore = F405,C901,E203,W503
+exclude =
+    *migrations*,
+    # python related
+    *.pyc,
+    .git,
+    __pycache__,
+    ./apidoc/*
+    ./docs/*
+    ./webpack/node_modules/*
+    ./version_log/*
+
+max-line-length=120
+max-complexity=12
+format=pylint
+show_source = False
+statistics = True
+count = True

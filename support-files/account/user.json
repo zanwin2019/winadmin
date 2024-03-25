@@ -1,0 +1,16 @@
+[
+    {
+        "username": "admin",
+        "first_name": "",
+        "last_name": "Admin",
+        "email": "admin@winadmin.com",
+        "is_staff": true,
+        "is_active": true,
+        "password": "1qaz!QAZ",
+        "is_superuser": true,
+        "phone": 13111111111,
+        "chname": "\u7BA1\u7406\u5458",
+        "qq": 3246456547,
+        "creator": "admin"
+    }
+]

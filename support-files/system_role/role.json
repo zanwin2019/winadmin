@@ -1,0 +1,12 @@
+[
+  {
+    "name": "\u8D85\u7EA7\u7BA1\u7406\u5458",
+    "code": "SUPERADMIN",
+    "status": 1,
+    "type": 0,
+    "sort": 0,
+    "remark": "",
+    "creator": "admin",
+    "is_builtin": "t"
+  }
+]

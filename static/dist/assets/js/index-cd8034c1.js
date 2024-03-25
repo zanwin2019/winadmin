@@ -1,0 +1,1 @@
+import{s as u}from"./index-85c2db4d.js";function n(){return{getMenu:e=>u({url:"/api/system/menu/",method:"GET",params:e}),addMenu:e=>u({url:"/api/system/menu/",method:"POST",data:e}),editMenu:(e,r)=>u({url:"/api/system/menu/"+r+"/",method:"PUT",data:e}),delMenu:e=>u({url:"/api/system/menu/"+e+"/",method:"DELETE"})}}export{n as u};

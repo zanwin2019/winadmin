@@ -1,0 +1,21 @@
+[
+  {
+    "schema_name": "public",
+    "name": "\u9ED8\u8BA4\u79DF\u6237",
+    "contact_person": "admin",
+    "contact_email": "admin@winadmin.com",
+    "contact_phone": "13988888888",
+    "status": 1,
+    "expire_date": "2099-08-30 16:00:00+00",
+    "remark": "admin",
+    "creator":  "admin",
+    "updater": "admin",
+    "data": [
+       {
+        "domain": "portal.winadmin.com",
+        "is_primary": "t",
+        "creator": "admin"
+      }
+    ]
+  }
+]

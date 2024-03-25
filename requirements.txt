@@ -1,0 +1,19 @@
+# -*- coding: utf-8 -*-
+# 工程预装模块
+# 需要额外的python包，可直接在文件后面添加
+# 请确保指定的包和版本号，可通过pip安装
+
+# Base
+Django==4.2.3
+djangorestframework==3.14.0
+djangorestframework-simplejwt==5.2.2
+django-cors-headers==4.2.0
+django-tenants==3.5.0
+django-mptt==0.14.0
+django-mptt-admin== 2.4.1
+psycopg2-binary==2.9.6
+casbin==1.21.0
+django-filter==23.2
+
+ua-parser==0.18.0
+geoip2==4.7.0

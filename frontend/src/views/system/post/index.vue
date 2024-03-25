@@ -1,0 +1,120 @@
+<template>
+	<div class="system-menu-container layout-padding" style="display: flex;">
+		<el-card shadow="hover" :body-style="{ paddingBottom: '0', display: 'flex' }">
+			<TableSearch v-bind="state.searchData" @search="handleQuery" />
+			<FunctionButton v-bind="state.buttonData" @onadd="onOpenAddPost('add')" />
+		</el-card>
+		<div style="margin-top: 8px" class="table-demo-padding layout-padding-view layout-padding-auto">
+			<Table ref="tableRef" v-bind="state.tableData" class="table-demo" @pageChange="pageChange">
+				<template v-slot:statusSlot="{ scopeData }">
+					<el-tag type="success" v-if="scopeData.row.status === 1">启用</el-tag>
+					<el-tag type="danger" v-if="scopeData.row.status === 0">禁用</el-tag>
+				</template>
+				<template v-slot:operateSlot="{ scopeData }">
+					<el-button icon="ele-Edit" text type="primary" @click="onOpenEditPost('edit', scopeData.row)"> 编辑
+					</el-button>
+					<el-button icon="ele-Delete" text type="danger" @click="delPost(scopeData.row)"> 删除 </el-button>
+				</template>
+			</Table>
+		</div>
+		<PostDialog ref="menuDialogRef" @handleQuery="handleQuery" v-if="state.dialogVisible" @PosthandleClose="PosthandleClose"/>
+	</div>
+</template>
+
+<script setup lang="ts" name="systemPost">
+import { defineAsyncComponent, ref, onMounted, reactive } from 'vue';
+import { ElMessage, ElMessageBox } from 'element-plus';
+import { tableData, searchData, buttonData } from './constant'
+import { usePostApi } from '/@/api/system/post/index';
+
+// 引入组件
+const Table = defineAsyncComponent(() => import('/@/components/table/index.vue'));
+const PostDialog = defineAsyncComponent(() => import('./common/dialog.vue'));
+const TableSearch = defineAsyncComponent(() => import('/@/components/search/index.vue'));
+const FunctionButton = defineAsyncComponent(() => import('/@/components/button/index.vue'));
+
+const menuDialogRef = ref();
+const state = reactive({
+	searchData,
+	buttonData,
+	tableData,
+	dialogVisible:false,
+});
+
+
+const str = ref<any>("")
+const pageChange  = (value: any) => {
+	str.value = value
+	state.tableData.param = str
+	handleQuery()
+}
+
+// 获取表格数据、搜索
+const handleQuery = (searchParams: any) => {
+	state.tableData.config.loading = true;
+	if (searchParams) {
+		var params = Object.assign(searchParams,state.tableData.param);
+	}else{
+		var params = state.tableData.param
+	}
+
+	usePostApi().getPost(params).then(res => {
+		state.tableData.data = res.data.items
+		state.tableData.config.total = res.data.count
+	}).finally(() => {
+		state.tableData.config.loading = false;
+	})
+}
+
+// 打开新增菜单弹窗
+const onOpenAddPost = (type: string) => {
+	state.dialogVisible = true;
+	setTimeout(() => {
+		menuDialogRef.value?.openDialog(type);
+	}, 200);
+};
+
+// 打开编辑菜单弹窗
+const onOpenEditPost = (type: string, row: EmptyObjectType) => {
+	state.dialogVisible = true;
+	setTimeout(() => {
+		menuDialogRef.value?.openDialog(type, row);
+	}, 200);
+};
+
+// 关闭弹窗并重置表单
+const PosthandleClose =() => {
+      state.dialogVisible = false;
+    }
+
+// 删除当前行
+const delPost = (row: any) => {
+	ElMessageBox.confirm(`确定删除岗位：【${row.name}】?`, '提示', {
+		confirmButtonText: '确定',
+		cancelButtonText: '取消',
+		type: 'warning',
+	}).then(async () => {
+		await usePostApi().delPost(row.id)
+		handleQuery();
+		ElMessage.success('删除成功');
+	})
+		.catch(() => { });
+};
+// 页面加载时
+onMounted(async () => {
+	handleQuery();
+});
+
+</script>
+<style scoped lang="scss">
+.system-menu-container {
+	.table-demo-padding {
+		padding: 15px;
+
+		.table-demo {
+			flex: 1;
+			overflow: hidden;
+		}
+	}
+}
+</style>

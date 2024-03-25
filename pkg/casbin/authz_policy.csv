@@ -1,0 +1,6 @@
+p, *, /, GET
+p, *, /api/token/*, *
+p, *, /api/auth/*, *
+p, zanwin, /api/system/*, *
+p, admin, *, *
+g, alice, admin

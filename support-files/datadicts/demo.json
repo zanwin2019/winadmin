@@ -1,0 +1,43 @@
+[
+	{
+		"key": "test",
+		"name": "test",
+		"desc": "test",
+		"is_enabled": true,
+		"is_readonly": true,
+		"is_show": true,
+		"is_builtin": true,
+		"data": [
+			{
+				"key": "item_1",
+				"name": "item_1",
+				"order": 1,
+				"is_readonly": true,
+				"is_builtin": true,
+				"children": [
+					{
+						"key": "item_1_1",
+						"name": "item_1_1",
+						"order": 1,
+						"is_readonly": true,
+						"is_builtin": true
+					},
+					{
+						"key": "item_1_2",
+						"name": "item_1_2",
+						"order": 2,
+						"is_readonly": true,
+						"is_builtin": true
+					}
+				]
+			},
+			{
+				"key": "item_2",
+				"name": "item_2",
+				"order": 2,
+				"is_readonly": true,
+				"is_builtin": true
+			}
+		]
+	}
+]

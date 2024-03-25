@@ -1,0 +1,1 @@
+import{s as t}from"./index-85c2db4d.js";function s(){return{getDept:e=>t({url:"/api/system/dept/",method:"GET",params:e}),addDept:e=>t({url:"/api/system/dept/",method:"POST",data:e}),editDept:(e,r)=>t({url:"/api/system/dept/"+r+"/",method:"PUT",data:e}),delDept:e=>t({url:"/api/system/dept/"+e+"/",method:"DELETE"})}}export{s as u};
