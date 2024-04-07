@@ -34,9 +34,8 @@ class AccountTokenObtainPairView(ApiGenericMixin, TokenObtainPairView):
         try:
             serializer = self.get_serializer(data=request.data)
             serializer.is_valid(raise_exception=True)
-            users = WaUser.objects.get(username=request.data.get('username'))
-            if users:
-                user = users[0]
+            user = WaUser.objects.get(username=request.data.get('username'))
+            if user:
                 log_browser, login_os, parsed_user_agent = parser_user_agent(request.META.get('HTTP_USER_AGENT'))
                 log_ip = request.META.get('REMOTE_ADDR')
                 Loignlog.objects.create(
