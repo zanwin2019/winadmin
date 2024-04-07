@@ -17,3 +17,4 @@ django-filter==23.2
 
 ua-parser==0.18.0
 geoip2==4.7.0
+requests==2.27.1
