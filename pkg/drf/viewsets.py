@@ -64,11 +64,10 @@ class ModelViewSet(ApiGenericMixin, viewsets.ModelViewSet):
 
     def destroy(self, request, *args, **kwargs):
         instance_object = self.get_object()
-        try:
+        if hasattr(instance_object, 'is_deleted'):
             instance_object.is_deleted = 1
             instance_object.save()
-        except Exception as e:
-            logger.error('软删除失败, 进行物理删除。原因:%s' % e)
+        else:
             instance_object.delete()
         return Response(instance_object)
 
